@@ -1,8 +1,8 @@
 #!/bin/bash
-echo "print command"
-# execute command
+echo "gclone clone git@github.com:user-cube/gclone.git"
+gclone clone git@github.com:user-cube/gclone.git
 sleep 2
 clear
-echo "print command"
-# execute command
+echo "gclone config"
+gclone config
 sleep 2

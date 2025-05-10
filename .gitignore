@@ -25,9 +25,9 @@ go.work.sum
 .env
 
 # Binaries
-$PROJECT_NAME
+gclone
 dist
 
 # Demo
-demo/$PROJECT_NAME.cast
-demo/$PROJECT_NAME.gif
+demo/gclone.cast
+demo/gclone.gif

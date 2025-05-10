@@ -2,7 +2,7 @@ VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo "v0.
 COMMIT ?= $(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown")
 BUILD_DATE ?= $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 BUILD_USER ?= $(shell whoami)@$(shell hostname)
-PKG := github.com/user-cube/$PROJECT_NAME
+PKG := github.com/user-cube/gclone
 LDFLAGS := -ldflags "-X $(PKG)/cmd.Version=$(VERSION) -X $(PKG)/cmd.BuildDate=$(BUILD_DATE) -X $(PKG)/cmd.GitCommit=$(COMMIT) -X $(PKG)/cmd.BuildUser=$(BUILD_USER)"
 
 .PHONY: all
@@ -10,18 +10,18 @@ all: clean build
 
 .PHONY: build
 build:
-	@echo "Building $PROJECT_NAME $(VERSION) ($(COMMIT))"
-	@go build $(LDFLAGS) -o $PROJECT_NAME main.go
+	@echo "Building gclone $(VERSION) ($(COMMIT))"
+	@go build $(LDFLAGS) -o gclone main.go
 
 .PHONY: install
 install:
-	@echo "Installing $PROJECT_NAME $(VERSION) to GOPATH"
+	@echo "Installing gclone $(VERSION) to GOPATH"
 	@go install $(LDFLAGS)
 
 .PHONY: clean
 clean:
 	@echo "Cleaning build artifacts"
-	@rm -f $PROJECT_NAME
+	@rm -f gclone
 	@rm -rf dist
 
 .PHONY: test
@@ -58,26 +58,26 @@ release-snapshot: clean
 
 .PHONY: build-release
 build-release: clean
-	@echo "Building release version of $PROJECT_NAME $(VERSION) ($(COMMIT))"
-	@go build $(LDFLAGS) -o $PROJECT_NAME main.go
-	@echo "Built $PROJECT_NAME binary with release information"
+	@echo "Building release version of gclone $(VERSION) ($(COMMIT))"
+	@go build $(LDFLAGS) -o gclone main.go
+	@echo "Built gclone binary with release information"
 	@echo "Version:    $(VERSION)"
 	@echo "Commit:     $(COMMIT)"
 	@echo "Build Date: $(BUILD_DATE)"
-	@echo "Run ./$PROJECT_NAME version to verify"
+	@echo "Run ./gclone version to verify"
 
 .PHONY: help
 help:
-	@echo "$PROJECT_NAME Makefile"
+	@echo "GClone Makefile"
 	@echo "---------------"
 	@echo "Available targets:"
-	@echo "  all              - Clean and build $PROJECT_NAME"
-	@echo "  build            - Build the $PROJECT_NAME binary"
-	@echo "  install          - Install $PROJECT_NAME to your GOPATH/bin"
+	@echo "  all              - Clean and build gclone"
+	@echo "  build            - Build the gclone binary"
+	@echo "  install          - Install gclone to your GOPATH/bin"
 	@echo "  clean            - Remove built binary and dist directory"
 	@echo "  test             - Run tests"
 	@echo "  lint             - Run linters (requires golangci-lint)"
 	@echo "  release          - Create a full release using GoReleaser"
 	@echo "  release-snapshot - Create a local release snapshot for testing (no publish)"
-	@echo "  build-release    - Build $PROJECT_NAME binary with release information"
+	@echo "  build-release    - Build gclone binary with release information"
 	@echo "  help             - Show this help message"
