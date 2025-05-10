@@ -216,7 +216,3 @@ In this example:
 - `IdentityFile ~/.ssh/github_personal` specifies which SSH key to use for this host
 
 When GClone transforms a URL from `git@github.com:user/repo.git` to `git@github.com-personal:user/repo.git`, SSH will use the configuration defined for the `github.com-personal` host.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
