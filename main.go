@@ -1,6 +1,6 @@
 package main
 
-import "github.com/user-cube/$PROJECT_NAME/cmd"
+import "github.com/user-cube/gclone/cmd"
 
 func main() {
 	cmd.Execute()
