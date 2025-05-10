@@ -94,43 +94,6 @@ GClone can automatically select the appropriate profile based on URL patterns. F
 - When you run `gclone clone git@github.com:your-username/repo.git`
 - GClone will automatically use your personal profile without you needing to specify `--profile=personal`
 
-## UI Package
-
-GClone includes a dedicated UI package that provides consistent user interface components across the application. The UI package includes:
-
-- **Colors**: Colorful output for different types of messages (success, info, warning, error)
-- **Prompts**: Interactive prompts for user input (selection lists, confirmations, text input)
-- **Operations**: Functions for displaying operation status and progress
-- **Tables**: Simple text-based tables for displaying structured data
-- **Spinners**: Progress indicators for long-running operations
-
-### Using the UI Package
-
-If you're developing for GClone, you can use the UI package in your code like this:
-
-```go
-import "github.com/user-cube/gclone/pkg/ui"
-
-// Display colorful messages
-ui.Success("Operation completed successfully")
-ui.Info("Processing %s", ui.Highlight("important information"))
-ui.Warning("This might take a while")
-ui.Error("Error occurred: %v", err)
-
-// Interactive prompts
-selected, _ := ui.SelectFromList("Choose an option", []string{"Option 1", "Option 2"})
-confirmed, _ := ui.Confirm("Are you sure?")
-input, _ := ui.PromptInput("Enter your name", "", nil)
-
-// Operation status
-ui.OperationInfo("Cloning", "personal", map[string]string{
-    "URL": "git@github.com:user/repo.git",
-})
-ui.OperationSuccess("Repository cloned successfully")
-```
-
-See `examples/ui_examples.go` for more examples of using the UI package.
-
 ## Configuration
 
 The configuration file is stored at `~/.gclone/config.yml` and has the following structure:
@@ -216,7 +179,3 @@ In this example:
 - `IdentityFile ~/.ssh/github_personal` specifies which SSH key to use for this host
 
 When GClone transforms a URL from `git@github.com:user/repo.git` to `git@github.com-personal:user/repo.git`, SSH will use the configuration defined for the `github.com-personal` host.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
