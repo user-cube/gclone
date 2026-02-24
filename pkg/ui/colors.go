@@ -45,7 +45,7 @@ func NewColors() *Colors {
 // Section prints a section header with a newline before and after
 func Section(title string) {
 	Normal("\n")
-	color.New(color.FgCyan, color.Bold).Printf("=== %s ===\n", title)
+	_, _ = color.New(color.FgCyan, color.Bold).Printf("=== %s ===\n", title)
 	Normal("\n")
 }
 
